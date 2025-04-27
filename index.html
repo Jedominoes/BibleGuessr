@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>titit</title>
+  <title>Bibleman kul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -21,9 +21,22 @@
       max-width: 300px;
       margin: 10px 0;
     }
+    #guessInput {
+      margin-bottom: 20px;
+    }
+    #submitButton {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
     #result {
       margin-top: 20px;
       font-weight: bold;
+    }
+    #score {
+      margin-top: 10px;
+      font-size: 18px;
     }
   </style>
 </head>
@@ -31,11 +44,13 @@
 
   <h1>BibleGuessr</h1>
 
+  <div id="score">Score: 0</div>
+
   <div id="verse"></div>
 
   <input type="text" id="guessInput" placeholder="Example: Genesis 1:1">
   <br>
-  <button onclick="checkGuess()">Submit</button>
+  <button id="submitButton" onclick="checkGuess()">Submit</button>
 
   <div id="result"></div>
 
