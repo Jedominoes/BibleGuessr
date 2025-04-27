@@ -31,14 +31,14 @@ const bible = {
 };
 
 let currentVerse = {};
-let bookList = Object.keys(bible);
 
 function pickRandomVerse() {
-  let book = bookList[Math.floor(Math.random() * bookList.length)];
-  let chapters = Object.keys(bible[book]);
-  let chapter = chapters[Math.floor(Math.random() * chapters.length)];
-  let verses = Object.keys(bible[book][chapter]);
-  let verse = verses[Math.floor(Math.random() * verses.length)];
+  const books = Object.keys(bible);
+  const book = books[Math.floor(Math.random() * books.length)];
+  const chapters = Object.keys(bible[book]);
+  const chapter = chapters[Math.floor(Math.random() * chapters.length)];
+  const verses = Object.keys(bible[book][chapter]);
+  const verse = verses[Math.floor(Math.random() * verses.length)];
 
   currentVerse = {
     book: book,
@@ -51,26 +51,20 @@ function pickRandomVerse() {
 }
 
 function checkGuess() {
-  let bookGuess = document.getElementById("bookInput").value.trim();
-  let chapterGuess = parseInt(document.getElementById("chapterInput").value.trim());
-  let verseGuess = parseInt(document.getElementById("verseInput").value.trim());
+  const guess = document.getElementById("guessInput").value.trim();
+  const correctAnswer = `${currentVerse.book} ${currentVerse.chapter}:${currentVerse.verse}`;
 
-  if (
-    bookGuess.toLowerCase() === currentVerse.book.toLowerCase() &&
-    chapterGuess === currentVerse.chapter &&
-    verseGuess === currentVerse.verse
-  ) {
+  if (guess.toLowerCase() === correctAnswer.toLowerCase()) {
     document.getElementById("result").innerText = "Correct! Well done.";
   } else {
-    document.getElementById("result").innerText = `Wrong! It was ${currentVerse.book} ${currentVerse.chapter}:${currentVerse.verse}`;
+    document.getElementById("result").innerText = `Wrong! Correct answer: ${correctAnswer}`;
   }
 
   setTimeout(() => {
-    document.getElementById("bookInput").value = "";
-    document.getElementById("chapterInput").value = "";
-    document.getElementById("verseInput").value = "";
+    document.getElementById("guessInput").value = "";
     document.getElementById("result").innerText = "";
     pickRandomVerse();
   }, 3000);
 }
+
 pickRandomVerse();
