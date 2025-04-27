@@ -1,72 +1,76 @@
-const bibleData = {
-    "Genesis": {
-        "1": {
-            "1": "In the beginning God created the heavens and the earth."
-        },
-        "2": {
-            "1": "Thus the heavens and the earth were finished, and all the host of them."
-        }
+const bible = {
+  "Genesis": {
+    "1": {
+      "1": "In the beginning God created the heavens and the earth.",
+      "2": "The earth was without form and void, and darkness was over the face of the deep."
     },
-    "Exodus": {
-        "1": {
-            "1": "Now these are the names of the children of Israel, who came into Egypt..."
-        },
-        "2": {
-            "1": "And there went a man of the house of Levi, and took to wife a daughter of Levi."
-        }
-    },
-    "Tobit": {
-        "1": {
-            "1": "This is the book of the acts of Tobit son of Tobiel..."
-        }
+    "2": {
+      "7": "Then the Lord God formed the man of dust from the ground and breathed into his nostrils the breath of life."
     }
+  },
+  "Exodus": {
+    "3": {
+      "14": "God said to Moses, 'I AM WHO I AM.'"
+    }
+  },
+  "Tobit": {
+    "5": {
+      "22": "Be of good cheer, for your journey will be safe."
+    }
+  },
+  "Psalms": {
+    "23": {
+      "1": "The Lord is my shepherd; I shall not want."
+    }
+  },
+  "Matthew": {
+    "5": {
+      "9": "Blessed are the peacemakers, for they shall be called sons of God."
+    }
+  }
 };
 
 let currentVerse = {};
-let scoreCorrect = 0;
-let scoreWrong = 0;
+let bookList = Object.keys(bible);
 
-function getRandomVerse() {
-    const books = Object.keys(bibleData);
-    const randomBook = books[Math.floor(Math.random() * books.length)];
-    const chapters = Object.keys(bibleData[randomBook]);
-    const randomChapter = chapters[Math.floor(Math.random() * chapters.length)];
-    const verses = Object.keys(bibleData[randomBook][randomChapter]);
-    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+function pickRandomVerse() {
+  let book = bookList[Math.floor(Math.random() * bookList.length)];
+  let chapters = Object.keys(bible[book]);
+  let chapter = chapters[Math.floor(Math.random() * chapters.length)];
+  let verses = Object.keys(bible[book][chapter]);
+  let verse = verses[Math.floor(Math.random() * verses.length)];
 
-    return {
-        text: bibleData[randomBook][randomChapter][randomVerse],
-        book: randomBook,
-        chapter: randomChapter,
-        verse: randomVerse
-    };
+  currentVerse = {
+    book: book,
+    chapter: parseInt(chapter),
+    verse: parseInt(verse),
+    text: bible[book][chapter][verse]
+  };
+
+  document.getElementById("verse").innerText = `"${currentVerse.text}"`;
 }
 
-function updateUI() {
-    const verseText = getRandomVerse();
-    currentVerse = verseText;
-    document.getElementById('verse').innerText = `"${verseText.text}"`;
-    document.getElementById('result').innerText = '';
-    document.getElementById('answer').value = '';
+function checkGuess() {
+  let bookGuess = document.getElementById("bookInput").value.trim();
+  let chapterGuess = parseInt(document.getElementById("chapterInput").value.trim());
+  let verseGuess = parseInt(document.getElementById("verseInput").value.trim());
+
+  if (
+    bookGuess.toLowerCase() === currentVerse.book.toLowerCase() &&
+    chapterGuess === currentVerse.chapter &&
+    verseGuess === currentVerse.verse
+  ) {
+    document.getElementById("result").innerText = "Correct! Well done.";
+  } else {
+    document.getElementById("result").innerText = `Wrong! It was ${currentVerse.book} ${currentVerse.chapter}:${currentVerse.verse}`;
+  }
+
+  setTimeout(() => {
+    document.getElementById("bookInput").value = "";
+    document.getElementById("chapterInput").value = "";
+    document.getElementById("verseInput").value = "";
+    document.getElementById("result").innerText = "";
+    pickRandomVerse();
+  }, 3000);
 }
-
-function submitAnswer() {
-    const playerAnswer = document.getElementById('answer').value.trim().toLowerCase();
-    const correctAnswer = currentVerse.text.toLowerCase();
-
-    if (playerAnswer === correctAnswer) {
-        scoreCorrect++;
-        document.getElementById('result').innerText = 'Correct!';
-    } else {
-        scoreWrong++;
-        document.getElementById('result').innerText = `Wrong! The correct verse was: "${currentVerse.text}"`;
-    }
-
-    document.getElementById('score').innerText = `Correct: ${scoreCorrect} | Wrong: ${scoreWrong}`;
-}
-
-function nextVerse() {
-    updateUI();
-}
-
-updateUI();
+pickRandomVerse();
