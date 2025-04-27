@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>tiitt</title>
+  <title>titit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
+    }
+    #verse {
+      margin-bottom: 20px;
+      font-size: 20px;
     }
     input, button {
-      margin: 10px;
       padding: 10px;
       font-size: 18px;
+      width: 80%;
+      max-width: 300px;
+      margin: 10px 0;
     }
     #result {
       margin-top: 20px;
@@ -27,13 +33,9 @@
 
   <div id="verse"></div>
 
-  <div>
-    <input type="text" id="bookInput" placeholder="Book (e.g., Genesis)">
-    <input type="number" id="chapterInput" placeholder="Chapter">
-    <input type="number" id="verseInput" placeholder="Verse">
-    <br>
-    <button onclick="checkGuess()">Submit</button>
-  </div>
+  <input type="text" id="guessInput" placeholder="Example: Genesis 1:1">
+  <br>
+  <button onclick="checkGuess()">Submit</button>
 
   <div id="result"></div>
 
