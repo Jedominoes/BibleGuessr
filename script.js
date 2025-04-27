@@ -1,3 +1,4 @@
+// Bible data (sample)
 const bible = {
   "Genesis": {
     "1": {
@@ -55,17 +56,24 @@ function checkGuess() {
   const guess = document.getElementById("guessInput").value.trim();
   const correctAnswer = `${currentVerse.book} ${currentVerse.chapter}:${currentVerse.verse}`;
 
-  if (guess.toLowerCase() === correctAnswer.toLowerCase()) {
+  // Save current correct answer before picking new verse
+  const previousCorrect = correctAnswer;
+
+  if (guess.toLowerCase() === previousCorrect.toLowerCase()) {
     score++;
-    document.getElementById("result").innerText = `Correct! It was ${correctAnswer}.`;
+    document.getElementById("result").innerText = `Correct! It was ${previousCorrect}.`;
   } else {
-    document.getElementById("result").innerText = `Wrong! It was ${correctAnswer}.`;
+    document.getElementById("result").innerText = `Wrong! It was ${previousCorrect}.`;
   }
 
   document.getElementById("score").innerText = `Score: ${score}`;
 
+  // Clear input
   document.getElementById("guessInput").value = "";
+
+  // Pick a new verse
   pickRandomVerse();
 }
 
+// Start the first verse
 pickRandomVerse();
