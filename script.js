@@ -31,6 +31,7 @@ const bible = {
 };
 
 let currentVerse = {};
+let score = 0;
 
 function pickRandomVerse() {
   const books = Object.keys(bible);
@@ -55,16 +56,16 @@ function checkGuess() {
   const correctAnswer = `${currentVerse.book} ${currentVerse.chapter}:${currentVerse.verse}`;
 
   if (guess.toLowerCase() === correctAnswer.toLowerCase()) {
-    document.getElementById("result").innerText = "Correct! Well done.";
+    score++;
+    document.getElementById("result").innerText = `Correct! It was ${correctAnswer}.`;
   } else {
-    document.getElementById("result").innerText = `Wrong! Correct answer: ${correctAnswer}`;
+    document.getElementById("result").innerText = `Wrong! It was ${correctAnswer}.`;
   }
 
-  setTimeout(() => {
-    document.getElementById("guessInput").value = "";
-    document.getElementById("result").innerText = "";
-    pickRandomVerse();
-  }, 3000);
+  document.getElementById("score").innerText = `Score: ${score}`;
+
+  document.getElementById("guessInput").value = "";
+  pickRandomVerse();
 }
 
 pickRandomVerse();
