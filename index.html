@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Verse Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bible Verse Guessing Game</h1>
+        <div id="verse-container">
+            <p id="verse">Loading verse...</p>
+        </div>
+        <input type="text" id="answer" placeholder="Type the full verse here">
+        <button onclick="submitAnswer()">Submit</button>
+        <button onclick="nextVerse()">Next Verse</button>
+        <p id="result"></p>
+        <p id="score">Correct: 0 | Wrong: 0</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
