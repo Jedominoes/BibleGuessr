@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>titit</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>tiitt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 18px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>BibleGuessr</h1>
-        <div id="verse-container">
-            <p id="verse">Loading verse...</p>
-        </div>
-        <input type="text" id="answer" placeholder="Type the full verse here">
-        <button onclick="submitAnswer()">Submit</button>
-        <button onclick="nextVerse()">Next Verse</button>
-        <p id="result"></p>
-        <p id="score">Correct: 0 | Wrong: 0</p>
-    </div>
-    <script src="script.js"></script>
+
+  <h1>BibleGuessr</h1>
+
+  <div id="verse"></div>
+
+  <div>
+    <input type="text" id="bookInput" placeholder="Book (e.g., Genesis)">
+    <input type="number" id="chapterInput" placeholder="Chapter">
+    <input type="number" id="verseInput" placeholder="Verse">
+    <br>
+    <button onclick="checkGuess()">Submit</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
