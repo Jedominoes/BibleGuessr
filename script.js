@@ -175,6 +175,11 @@ const bible = {
       "65": "Pilate said unto them, Ye have a watch: go your way, make it as sure as ye can.",
       "66": "So they went, and made the sepulchre sure, sealing the stone, and setting a watch."
     }
+  },
+  "Satan": {
+    "1": {
+      "1": "lomel masuk neraka, amin!"
+    }
   }
 };
 
